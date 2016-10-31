@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-md-4 col-md-0ffset-4">
+        <h1>Создать</h1>
+        {{# if hasErrors}}
+            <div class="alert alert-danger">
+                {{# each messages}}
+                    <p>{{this}}</p>
+                {{/each}}
+            </div>
+        {{/if}}
+        <form action="/category/create" method="post">
+            <div class="form-group">
+                <label for="description">Категория родитель</label>
+                <select class="form-control" name="category" id="categorySel">
+                    <option>выберите категорию</option>
+                    {{# if categories}}
+                        {{#each categories}}
+                            <option value="{{this._id}}">{{this.name}}</option>
+                        {{/each}}
+                    {{/if}}
+                </select>
+                <input type="hidden" id="category" value=""/>
+            </div>
+            <div class="form-group">
+                <label for="description">Наименование</label>
+                <input type="text" id="name" name="name" class="form-control"/>
+            </div>
+
+            <legend>
+                Мета теги:
+            </legend>
+            <div class="form-group">
+                <label for="descriptionMeta">DESCRIPTION</label>
+                <input type="text" id="descriptionMeta" name="descriptionMeta" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="keywordsMeta">KEYWORDS</label>
+                <input type="text" id="keywordsMeta" name="keywordsMeta" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="authorMeta">AUTHOR</label>
+                <input type="text" id="authorMeta" name="authorMeta" class="form-control"/>
+            </div>
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}"/>
+            <button type="submit" class="btn btn-primary">Создать</button>
+        </form>
+    </div>
+</div>

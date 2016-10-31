@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <h1>Создать</h1>
+        {{# if hasErrors}}
+            <div class="alert alert-danger">
+                {{# each messages}}
+                    <p>{{this}}</p>
+                {{/each}}
+            </div>
+        {{/if}}
+        <form action="/product/create" method="post">
+            <div class="form-group">
+                <label for="description">Категория</label>
+                <select class="form-control" name="category" id="categorySel">
+                    <option>Выберите категорию</option>
+                    {{#each categories}}
+                        <option value="{{this._id}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+                <input type="hidden" id="category" value=""/>
+            </div>
+            <div class="form-group">
+                <label for="title">Наименование</label>
+                <input type="text" id="title" name="title" class="form-control" placeholder="Наименование"/>
+            </div>
+            <div class="form-group">
+                <label for="description">Описание</label>
+                <input type="text" id="description" name="description" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="price">Цена</label>
+                <input type="text" id="price" name="price" class="form-control"/>
+            </div>
+
+            <legend>
+                Мета теги:
+            </legend>
+            <div class="form-group">
+                <label for="descriptionMeta">DESCRIPTION</label>
+                <input type="text" id="descriptionMeta" name="descriptionMeta" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="keywordsMeta">KEYWORDS</label>
+                <input type="text" id="keywordsMeta" name="keywordsMeta" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="authorMeta">AUTHOR</label>
+                <input type="text" id="authorMeta" name="authorMeta" class="form-control"/>
+            </div>
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}"/>
+            <button type="submit" class="btn btn-primary">Создать</button>
+        </form>
+    </div>
+</div>

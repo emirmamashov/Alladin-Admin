@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-md-4 col-md-0ffset-4">
+        <h1>Выберите файл</h1>
+        {{# if hasErrors}}
+            <div class="alert alert-danger">
+                {{# each messages}}
+                    <p>{{this}}</p>
+                {{/each}}
+            </div>
+        {{/if}}
+        <form action="/product/import?_csrf={{csrfToken}}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Файл</label>
+                <input type="file" id="file" name="file" class="form-control"/>
+            </div>
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}"/>
+            <button type="submit" class="btn btn-primary">Загрузить</button>
+        </form>
+    </div>
+</div>

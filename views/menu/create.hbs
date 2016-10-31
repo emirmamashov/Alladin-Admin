@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <h2>Создать</h2>
+        {{# if hasErrors}}
+            <div class="alert alert-danger">
+                {{#each messages}}
+                    <p>{{this}}</p>
+                {{/each}}
+            </div>
+        {{/if}}
+
+        <form action="/menu/create/" method="post">
+            <div class="form-group">
+                <label for="title">Заголовок</label>
+                <input type="text" name="title" id="title" class="form-control" placeholder="Заголовок"/>
+            </div>
+            <div class="form-group">
+                <input type="text" name="href" id="href" class="form-control" placeholder="Ссылка"/>
+            </div>
+
+            <div class="form-group">
+                <input type="color" name="bgcolor" id="bgcolor" class="form-control" placeholder="Цвет меню"/>
+            </div>
+
+            <div class="form-group">
+                <select name="category" id="category" class="form-control">
+                    <option>Выберите категорию</option>
+                    {{#each categories}}
+                    <option value="{{this._id}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <legend>Под меню:</legend>
+            <div id="subMenuParent">
+                <input id="countSubmenus" type="hidden" value="1"/>
+
+                <div id="subMenu1">
+                    <div class="form-group">
+                        <input type="text" name="childrenTitle" class="form-control" placeholder="Заголовок"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="childrenHref" class="form-control" placeholder="Ссылка">
+                    </div>
+                    <div class="form-group">
+                        <select name="childrenCategory" id="category" class="form-control">
+                            <option>Выберите категорию</option>
+                            {{#each categories}}
+                                <option value="{{this._id}}">{{this.name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <span class="btn btn-success" onclick="addSubMenu()">Добавить подменю</span>
+            <br/>
+            <br/>
+
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}"/>
+            <button type="submit" class="btn btn-primary">Создать</button>
+        </form>
+    </div>
+</div>
+<script src="/javascripts/menu/menu.js"></script>
