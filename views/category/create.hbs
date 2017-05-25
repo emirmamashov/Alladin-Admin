@@ -12,7 +12,7 @@
             <div class="form-group">
                 <label for="description">Категория родитель</label>
                 <select class="form-control" name="category" id="categorySel">
-                    <option>выберите категорию</option>
+                    <option value="">Выберите категорию</option>
                     {{# if categories}}
                         {{#each categories}}
                             <option value="{{this._id}}">{{this.name}}</option>

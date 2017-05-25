@@ -26,9 +26,9 @@ router.get('/create', isLoggedIn, function(req, res, next) {
 router.post('/create',isLoggedIn,function (req, res, next) {
     var category = new Category({
         name: req.body.name,
-        parentCategory: req.body.category
+        parentCategory: req.body.category?req.body.category:null
     });
-
+    console.log(req.body);
     category.save(function(err) {
         if (err) {
             console.log('Category not saved successfully!'+err);
@@ -98,8 +98,8 @@ router.get('/delete/:id', function(req, res, next) {
         }
         product.remove(function(err) {
             if (err) {
-                throw err;
                 console.log(err);
+                throw err;
             }
             console.log('Category deleted!');
             res.redirect('/category/');
